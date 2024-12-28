@@ -1,9 +1,10 @@
 const express = require('express'); const morgan = require('morgan'); const PORT = 3000;
 var app = express();
 app.use(morgan('tiny'));
+
 app.get('/', (req, res) => {
     res.status(200);
-    res.send('<h1>Hello Express Web App!</h1>');
+    res.sendFile(__dirname + '/html/welcome.html');
 });
 
 app.get('*', (req, res) => {
