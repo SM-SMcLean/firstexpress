@@ -6,12 +6,16 @@ app.set('view engine', 'ejs');
 
 app.use(express.static(__dirname + '/public'));
 
+const fs = require('fs');
+
+const data = JSON.parse(fs.readFileSync(__dirname + '/data/students.json'));
+
 app.use(morgan('tiny'));
 
 app.get('/', (req, res) => {
     res.status(200);
     //res.sendFile(__dirname + '/html/welcome.html');
-    res.render('mytemplate');
+    res.render('mytemplate', { title: 'Current Alumni 2024', data });
 });
 
 app.get('*', (req, res) => {
