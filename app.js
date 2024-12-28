@@ -2,13 +2,16 @@ const express = require('express'); const morgan = require('morgan'); const PORT
 
 var app = express();
 
+app.set('view engine', 'ejs');
+
 app.use(express.static(__dirname + '/public'));
 
 app.use(morgan('tiny'));
 
 app.get('/', (req, res) => {
     res.status(200);
-    res.sendFile(__dirname + '/html/welcome.html');
+    //res.sendFile(__dirname + '/html/welcome.html');
+    res.render('mytemplate');
 });
 
 app.get('*', (req, res) => {
